@@ -1,0 +1,16 @@
+[
+    {
+        "id" : "1",
+        "name" : "agent-1-openrules",
+        "ip" : "192.168.1.218",
+        "enabled" : "true",
+        "active" : "true"
+    },
+    {
+        "id" : "2",
+        "name" : "agent-2-217",
+        "ip" : "192.168.1.217",
+        "enabled" : "true",
+        "active" : "true"
+    }
+]
