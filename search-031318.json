@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "3d2363c0-26ac-11e8-b588-8bb5172d0df2",
+    "_type": "search",
+    "_source": {
+      "title": "owlh.alertanddns",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"wazuh-alerts-3.x-*\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[{\"meta\":{\"index\":\"wazuh-alerts-3.x-*\",\"type\":\"phrases\",\"key\":\"data.event_type\",\"value\":\"dns, alert\",\"params\":[\"dns\",\"alert\"],\"negate\":false,\"disabled\":false,\"alias\":null},\"query\":{\"bool\":{\"should\":[{\"match_phrase\":{\"data.event_type\":\"dns\"}},{\"match_phrase\":{\"data.event_type\":\"alert\"}}],\"minimum_should_match\":1}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "d1a5d360-26b2-11e8-b588-8bb5172d0df2",
+    "_type": "search",
+    "_source": {
+      "title": "owlh.http",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"wazuh-alerts-3.x-*\",\"highlightAll\":true,\"version\":true,\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"wazuh-alerts-3.x-*\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"data.event_type\",\"value\":\"http\",\"params\":{\"query\":\"http\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"data.event_type\":{\"query\":\"http\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "55f96a50-207d-11e8-b588-8bb5172d0df2",
+    "_type": "search",
+    "_source": {
+      "title": "owlh.alert",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"wazuh-alerts-3.x-*\",\"highlightAll\":true,\"version\":true,\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"wazuh-alerts-3.x-*\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"data.event_type\",\"value\":\"alert\",\"params\":{\"query\":\"alert\",\"type\":\"phrase\"}},\"query\":{\"match\":{\"data.event_type\":{\"query\":\"alert\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  }
+]
