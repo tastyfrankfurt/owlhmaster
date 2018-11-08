@@ -1,0 +1,65 @@
+- name: Prueba de ping
+  ping:
+
+- name: Create SSH key for user owlh
+  user:
+    name: owlh
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/owlh
+
+- name: Software Tap scripts
+  git:
+    repo: 'https://github.com/owlh/flockcontroller.git'
+    dest: /etc/owlh/softwaretap
+    force: yes
+
+- name: Install package TcpReplay
+  yum:
+    name: "{{ packages }}"
+    enablerepo: "epel"
+  vars:
+    packages:
+      - tcpreplay
+      - python-pip
+
+- name: Install paramiko SSH library
+  pip:
+    name: paramiko
+    state: latest
+
+- name: configure owlh interface
+  local_action: command sudo bash /etc/owlh/softwaretap/owlh_interface.sh
+
+- name: OwlH folder structure
+  file:
+    state: directory
+    path: "{{ item }}"
+    owner: owlh
+    group: owlh
+    mode: 0644
+  with_items:
+    - /usr/share/owlh/in_queue
+    - /usr/share/owlh/in_progress
+    - /usr/share/owlh/out_queue
+    - /opt/owlh
+    - /var/log/owlh
+
+- name: copy files to the right place
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    remote_src: yes
+  with_items: 
+    - { src: /etc/owlh/softwaretap/filter.bpf, dst: /etc/owlh/conf/}
+    - { src: /etc/owlh/softwaretap/owlh_conf.json, dst: /etc/owlh/conf/}
+    - { src: /etc/owlh/softwaretap/inventory.json, dst: /etc/owlh/conf/}
+    - { src: /etc/owlh/softwaretap/pcap-replay.sh, dst: /opt/owlh/}
+
+- name: copy owlh scripts
+  copy:
+    src: "{{ item }}"
+    dest: "/opt/owlh"
+    remote_src: yes
+  with_fileglob: 
+    - /etc/owlh/softwaretap/*.py

@@ -1,0 +1,43 @@
+- name: add user owlh
+  user:
+    name: owlh
+    comment: owlh software tap user
+
+- name: install tcpdump
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - tcpdump
+
+- name: deploy OwlH master key
+  authorized_key:
+    user: owlh
+    key: "{{ lookup('file', '/home/owlh/.ssh/owlh.pub') }}"
+    state: present
+
+- name: Make OwlH user a sudoer
+  lineinfile:
+   path: /etc/sudoers
+   state: present
+   regexp: '^owlh\s'
+   line: 'owlh ALL=(ALL) NOPASSWD: /usr/sbin/tcpdump, /usr/bin/chown'
+
+- name: Create OwlH folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: owlh
+    group: owlh
+  with_items: 
+    - /etc/owlh
+    - /var/log/owlh
+    - /usr/share/owlh/pcap
+
+- name: copy BPF filter 
+  copy:
+    src: /etc/owlh/conf/filter.bpf
+    dest: /etc/owlh/filter.bpf
+    owner: owlh
+    group: owlh
+    mode: 0644

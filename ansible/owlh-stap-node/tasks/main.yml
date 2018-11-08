@@ -1,0 +1,4 @@
+- name: tasks for Amazon instances
+  import_tasks: "amazon.yml"
+  when: ansible_distribution == "Amazon"
+
