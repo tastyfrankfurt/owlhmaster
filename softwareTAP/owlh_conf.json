@@ -3,7 +3,7 @@
     "logfile" : "/var/log/owlh/flock.log",
     "inventory" : "/etc/owlh/inventory.conf",
     "owlh_user" : "owlh",
-    "owlh_user_key" : "/home/owlh/.ssh/owlhmaster",
+    "owlh_user_key" : "/home/owlh/.ssh/owlh",
     "max_cpu" : "25",
     "max_mem" : "25",
     "max_storage" : "80",
